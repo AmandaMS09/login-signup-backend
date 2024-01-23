@@ -15,8 +15,10 @@ import morgan from "morgan"
 //Project path
 import path from "path"
 import { fileURLToPath } from "url"
-//Supabase creation
-import { createClient } from '@supabase/supabase-js'
+/* Local imports */
+//import authRoutes from "./routes/auth.js"
+//import userRoutes from "./routes/user.js"
+//import addProfilePhoto from "./controllers/user.js"
 
 /* GENERAL CONFIG */
 const __filename = fileURLToPath(import.meta.url)
@@ -43,17 +45,13 @@ const storage = multer.diskStorage({
 })
 const upload = multer({ storage })
 
-/* DB AND SERVER CONFIG */
-const PORT = process.env.PORT || 3303
-const supabaseUrl = process.env.SUPABASE_URL
-const supabaseKey = process.env.SUPABASE_KEY
-async function startServer() {
-    try {
-        createClient(supabaseUrl, supabaseKey);
-        app.listen(PORT, () => console.log(`Server Port ${PORT} running.`));
-    } catch (err) {
-        console.log(`${err} - Did not connect.`);
-    }
-}
+/* ROUTES WITH FILES */
+//app.post("/user/photo", verifyToken, upload.single("picture"), addProfilePhoto)
 
-startServer();
+/* ROUTES */
+//app.use("/auth", authRoutes);
+//app.use("/user", userRoutes);
+
+/* SERVER CONFIG */
+const PORT = process.env.PORT || 3303
+app.listen(PORT, () => console.log(`Server Port ${PORT} running.`))
