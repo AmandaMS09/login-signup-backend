@@ -16,7 +16,7 @@ import morgan from "morgan"
 import path from "path"
 import { fileURLToPath } from "url"
 /* Local imports */
-//import authRoutes from "./routes/auth.js"
+import authRoutes from "./routes/auth.js"
 //import userRoutes from "./routes/user.js"
 //import addProfilePhoto from "./controllers/user.js"
 
@@ -49,7 +49,7 @@ const upload = multer({ storage })
 //app.post("/user/photo", verifyToken, upload.single("picture"), addProfilePhoto)
 
 /* ROUTES */
-//app.use("/auth", authRoutes);
+app.use("/auth", authRoutes);
 //app.use("/user", userRoutes);
 
 /* SERVER CONFIG */
